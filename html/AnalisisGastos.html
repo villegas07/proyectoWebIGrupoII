@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../recursos/logo.jpg">
+    <link rel="stylesheet" href="../css/AnalisisDeGastos.css">
+    <title>Análisis de Ganancias y Pérdidas</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="../recursos/logo.jpg" alt="Logo de la Empresa" class="logo">
+            <ul>
+                <li><a href="../html/InicioClientes.html">Inicio</a></li>
+            </ul>
+        </nav>
+        <h1>Análisis de Ganancias y Pérdidas</h1>
+    </header>
+
+    <main>
+        <canvas id="profitLossAnalysisChart"></canvas>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Finova. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        function loadTransactions() {
+            return JSON.parse(localStorage.getItem('transactions')) || [];
+        }
+
+
+        const transactions = loadTransactions();
+
+
+        const ingresos = transactions
+            .filter(t => t.transactionType === 'ingreso')
+            .map(t => ({ value: parseFloat(t.transactionValue), date: t.transactionDate }));
+        const egresos = transactions
+            .filter(t => t.transactionType === 'egreso')
+            .map(t => ({ value: parseFloat(t.transactionValue), date: t.transactionDate }));
+
+
+        const fechas = [...new Set([...ingresos, ...egresos].map(t => t.date))].sort();
+
+
+        const ingresosPorFecha = fechas.map(fecha => {
+            const ingreso = ingresos.filter(i => i.date === fecha).reduce((sum, i) => sum + i.value, 0);
+            return ingreso;
+        });
+
+        const egresosPorFecha = fechas.map(fecha => {
+            const egreso = egresos.filter(e => e.date === fecha).reduce((sum, e) => sum + e.value, 0);
+            return egreso;
+        });
+
+
+        const data = {
+            labels: fechas,
+            datasets: [
+                {
+                    label: 'Ingresos',
+                    data: ingresosPorFecha,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true
+                },
+                {
+                    label: 'Egresos',
+                    data: egresosPorFecha,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true
+                }
+            ]
+        };
+
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Análisis de Ingresos y Egresos'
+                    }
+                },
+                interaction: {
+                    intersect: false
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Fecha'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Valor'
+                        }
+                    }
+                }
+            }
+        };
+
+
+        const profitLossAnalysisChart = new Chart(
+            document.getElementById('profitLossAnalysisChart'),
+            config
+        );
+    </script>
+    
+</body>
+</html>

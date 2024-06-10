@@ -1,0 +1,147 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h2 {
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: #4CAF50;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.item {
+    width: 280px;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.item p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.navbar .logo {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.navbar .icons {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .icons a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .icons a img {
+    width: 24px;
+    height: 24px;
+}
+
+.navbar .icons a .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 12px;
+}
+
+.img-noti {
+    width: 50px;
+    height: 50px;
+}
+
+main {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.download-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.download-section button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

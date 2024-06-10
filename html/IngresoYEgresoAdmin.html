@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../recursos/logo.jpg">
+    <link rel="stylesheet" href="../css/IngresoEgresoAdmin.css">
+    <title>Gestión de Tipos de Ingresos y Egresos</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="../recursos/logo.jpg" alt="Logo de la Empresa" class="logo">
+            <ul>
+                <li><a href="../html/InicioAdmin.html">Inicio</a></li>
+            </ul>
+        </nav>
+        <h1>Gestión de Tipos de Ingresos y Egresos</h1>
+    </header>
+
+    <main>
+        <div class="formulario">
+            <form id="tipoForm">
+                <label for="codigo">Código:</label>
+                <input type="text" id="codigo" name="codigo" placeholder="Se Genera Automaticamente" readonly>
+
+                <label for="nombre">Nombre del tipo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion">
+
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="">Seleccionar</option>
+                    <option value="ingreso">Ingreso</option>
+                    <option value="egreso">Egreso</option>
+                </select>
+
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria">
+                    <option value="">Seleccionar</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Servicios">Servicios</option>
+                    <option value="Sustento">Sustento</option>
+                </select>
+
+                <div class="button-group">
+                    <button type="button" id="guardarButton" class="btn btn-save" onclick="agregarTipo()">Guardar</button>
+                    <button type="button" class="btn btn-clear" onclick="limpiarFormulario()">Limpiar</button>
+                    <button type="button" id="actualizarButton" class="btn btn-update" style="display:none;" onclick="actualizarTipo()">Actualizar</button>
+                </div>
+            </form>
+        </div>
+
+        <div>
+            <h2>Lista de Tipos de Ingresos y Egresos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre del tipo</th>
+                        <th>Descripción</th>
+                        <th>Tipo</th>
+                        <th>Categoría</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaEntradas">
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Finova. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../js/IngresoYEgresoAdmin.js"></script>
+</body>
+</html>

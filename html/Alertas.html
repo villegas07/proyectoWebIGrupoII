@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../recursos/logo.jpg">
+    <link rel="stylesheet" href="../css/Alertas.css">
+    <title>Gestión de Alertas Financieras</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="../recursos/logo.jpg" alt="Logo de la Empresa" class="logo">
+            <div class="icons">
+                <ul>
+                    <li><a href="../html/InicioClientes.html">Inicio</a></li>
+                </ul>
+                <a href="#" id="notificationIcon">
+                    <img src="../recursos/noti.png" alt="Notificaciones">
+                    <span class="badge" id="notificationBadge" style="display: none;">0</span>
+                </a>
+            </div>
+        </nav>
+        <h1>Gestión de Alertas Financieras</h1>
+    </header>
+    <main>
+        <section class="container">
+            <div>
+                <div id="alertContainer"></div>
+                <h2>Información de la Alerta</h2>
+                <form id="alertForm">
+                    <label for="alertType">Tipo de alerta:</label>
+                    <select id="alertType" name="alertType" required>
+                        <option value="vencimiento">Vencimiento de factura</option>
+                        <option value="saldo_minimo">Saldo mínimo alcanzado</option>
+                    </select>
+
+                    <label for="alertDescription">Descripción de la alerta:</label>
+                    <input type="text" id="alertDescription" name="alertDescription" required>
+
+                    <label for="alertDateTime">Fecha y hora de la alerta:</label>
+                    <input type="datetime-local" id="alertDateTime" name="alertDateTime" required>
+
+                    <label for="repeatOptions">Opciones de repetición:</label>
+                    <select id="repeatOptions" name="repeatOptions">
+                        <option value="una_vez">Una vez</option>
+                        <option value="diariamente">Diariamente</option>
+                        <option value="semanalmente">Semanalmente</option>
+                        <option value="mensualmente">Mensualmente</option>
+                    </select>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-save">Guardar</button>
+                        <button type="button" class="btn btn-clear" onclick="clearForm()">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo de Alerta</th>
+                            <th>Descripción</th>
+                            <th>Fecha y Hora</th>
+                            <th>Repetición</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alertsTable">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Finova. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="notificationsMenu" class="notifications-menu" style="display: none;">
+        <h3>Notificaciones</h3>
+        <ul id="notificationsList"></ul>
+    </div>
+
+    <script src="../js/Alertas.js"></script>
+</body>
+</html>

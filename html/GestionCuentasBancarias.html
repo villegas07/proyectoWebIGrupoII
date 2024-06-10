@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../recursos/logo.jpg">
+    <link rel="stylesheet" href="../css/GestionCuentasBancarias.css">
+    <title>Gestión de Cuentas Bancarias</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="../recursos/logo.jpg" alt="Logo de la Empresa" class="logo">
+            <ul>
+                <li><a href="../html/InicioClientes.html">Inicio</a></li>
+            </ul>
+        </nav>
+        <h1>Gestión de Cuentas Bancarias</h1>
+    </header>
+    <main>
+        <section class="container">
+            <div>
+                <h2>Información de la Cuenta Bancaria</h2>
+                <form id="accountForm">
+                    <label for="accountNumber">Número de cuenta:</label>
+                    <input type="text" id="accountNumber" name="accountNumber" required>
+                    
+                    <label for="bankName">Nombre del banco:</label>
+                    <input type="text" id="bankName" name="bankName" required>
+                    
+                    <label for="accountType">Tipo de cuenta:</label>
+                    <select id="accountType" name="accountType" required>
+                        <option value="corriente">Corriente</option>
+                        <option value="ahorros">Ahorros</option>
+                        <option value="inversion">Inversión</option>
+                    </select>
+                    
+                    <label for="currentBalance">Saldo actual:</label>
+                    <input type="number" id="currentBalance" name="currentBalance" required>
+                    
+                    <label for="accountStatus">Estado de la cuenta:</label>
+                    <select id="accountStatus" name="accountStatus" required>
+                        <option value="activa">Activa</option>
+                        <option value="inactiva">Inactiva</option>
+                        <option value="cerrada">Cerrada</option>
+                    </select>
+                    
+                    <label for="openingDate">Fecha de apertura:</label>
+                    <input type="date" id="openingDate" name="openingDate">
+                    
+                    <label for="description">Descripción:</label>
+                    <input type="text" id="description" name="description">
+                    
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-save">Guardar</button>
+                        <button type="button" class="btn btn-clear" onclick="clearForm()">Limpiar</button>
+                        <button type="button" class="btn btn-update" id="btnUpdate" onclick="updateAccount()" disabled>Actualizar</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Número&nbsp;de&nbsp;cuenta</th>
+                            <th>Nombre&nbsp;del&nbsp;banco</th>
+                            <th>Tipo&nbsp;de&nbsp;cuenta</th>
+                            <th>Saldo&nbsp;actual</th>
+                            <th>Estado</th>
+                            <th>Fecha&nbsp;de&nbsp;apertura</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="accountsTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Finova. Todos los derechos reservados.</p>
+    </footer>
+    <script src="../js/GestionCuentasBancarias.js"></script>
+    
+</body>
+</html>

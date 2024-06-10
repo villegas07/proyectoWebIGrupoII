@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../recursos/logo.jpg">
+    <title>Gestor De Finanzas Personales</title>
+    <link rel="stylesheet" href="../css/InicioClientes.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../html/InicioClientes.html" class="logo">Gestor De Finanzas Personales</a>
+            <div class="icons">
+                <ul>
+                    <li><a href="../html/InicioClientes.html">Inicio</a></li>
+                </ul>
+                <a href="#" id="notificationIcon">
+                    <img src="../recursos/noti.png" alt="Notificaciones">
+                    <span class="badge" id="notificationBadge" style="display: none;">0</span>
+                </a>
+                <div class="user-menu" id="userMenu">
+                    <img src="../recursos/user.png" alt="Cuenta" id="userIcon">
+                    <div class="dropdown" id="userDropdown" style="display: none;">
+                        <a href="#" id="logout">Cerrar sesión</a>
+                        <a href="#" id="switchAccount">Cambiar de cuenta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>Bienvenido a tu gestor financiero</h2>
+        <p>Esta increíble herramienta te ayuda a administrar tus finanzas de manera efectiva. Mejora tu salud financiera y alcanza tus metas económicas personales con facilidad. ¡No esperes más para tomar el control de tu futuro financiero!</p>
+        <div class="container">
+            <div class="item">
+                <a href="../html/GestionCuentasBancarias.html">
+                    <img src="../recursos/gestion.jpg" alt="Gestión de cuentas bancarias">
+                    <p>Gestión de cuentas bancarias</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="../html/Transacciones.html">
+                    <img src="../recursos/transacciones.jpg" alt="Gestión de transacciones">
+                    <p>Gestión de transacciones a nivel de ingresos y egresos</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="../html/Alertas.html">
+                    <img src="../recursos/alertas.jpg" alt="Gestión de alertas">
+                    <p>Gestión de alertas</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="../html/AnalisisGastos.html">
+                    <img src="../recursos/analisis.jpg" alt="Análisis">
+                    <p>Análisis de gastos</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="../html/DonwloadRegistro.html">
+                    <img src="../recursos/descarga.png" alt="descargar registro">
+                    <p>descargar registro</p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <div id="notificationsMenu" class="notifications-menu" style="display: none;">
+        <h3>Notificaciones</h3>
+        <ul id="notificationsList"></ul>
+    </div>
+
+    <script>
+        function checkNotifications() {
+            const alerts = JSON.parse(localStorage.getItem('alerts')) || [];
+            const now = new Date();
+            let notificationCount = 0;
+            const notificationsList = document.getElementById('notificationsList');
+            notificationsList.innerHTML = ''; // Clear current notifications
+
+            alerts.forEach(alert => {
+                const alertDate = new Date(alert.alertDateTime);
+                if (alertDate <= now && !alert.notified) {
+                    notificationCount++;
+                    alert.notified = true;
+
+                    // Add notification to the list
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="/html/Alertas.html"><strong>${alert.alertType}</strong>: ${alert.alertDescription}</a>`;
+                    notificationsList.appendChild(li);
+                }
+            });
+
+            if (notificationCount > 0) {
+                document.getElementById('notificationBadge').innerText = notificationCount;
+                document.getElementById('notificationBadge').style.display = 'inline';
+            }
+
+            localStorage.setItem('alerts', JSON.stringify(alerts));
+        }
+
+        function toggleNotificationsMenu() {
+            const menu = document.getElementById('notificationsMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            // Reset the notification count when the menu is opened
+            if (menu.style.display === 'block') {
+                document.getElementById('notificationBadge').style.display = 'none';
+            }
+        }
+
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function logout() {
+            window.location.href = '../index.html';
+        }
+
+        function switchAccount() {
+            window.location.href = '../index.html';
+        }
+
+        document.getElementById('notificationIcon').addEventListener('click', toggleNotificationsMenu);
+        document.getElementById('userIcon').addEventListener('click', toggleUserMenu);
+        document.getElementById('logout').addEventListener('click', logout);
+        document.getElementById('switchAccount').addEventListener('click', switchAccount);
+
+        window.onload = function() {
+            checkNotifications();
+            setInterval(checkNotifications, 60000); // Check notifications every minute
+        };
+    </script>
+</body>
+</html>

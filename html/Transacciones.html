@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../recursos/logo.jpg">
+    <link rel="stylesheet" href="../css/Transacciones.css">
+    <title>Gestión de Transacciones Financieras</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="../recursos/logo.jpg" alt="Logo de la Empresa" class="logo">
+            <ul>
+                <li><a href="../html/InicioClientes.html">Inicio</a></li>
+            </ul>
+        </nav>
+        <h1>Gestión de Transacciones Financieras</h1>
+    </header>
+    <main>
+        <section class="container">
+            <div>
+                <div id="alertContainer"></div>
+                <h2>Información de la Transacción</h2>
+                <form id="transactionForm">
+                    <label for="transactionType">Tipo de transacción:</label>
+                    <select id="transactionType" name="transactionType" required>
+                        <option value="ingreso">Ingreso</option>
+                        <option value="egreso">Egreso</option>
+                    </select>
+
+                    <label for="associatedType">Tipo de ingreso o egreso asociado:</label>
+                    <input type="text" id="associatedType" name="associatedType" required>
+
+                    <label for="transactionValue">Valor de la transacción:</label>
+                    <input type="number" id="transactionValue" name="transactionValue" required>
+
+                    <label for="relatedAccount">Cuenta bancaria relacionada:</label>
+                    <input type="text" id="relatedAccount" name="relatedAccount" required>
+
+                    <label for="transactionDate">Fecha de la transacción:</label>
+                    <input type="date" id="transactionDate" name="transactionDate" required>
+
+                    <label for="description">Descripción opcional:</label>
+                    <input type="text" id="description" name="description">
+
+                    <label for="attachment">Adjunto opcional:</label>
+                    <input type="file" id="attachment" name="attachment" accept="image/*">
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-save">Guardar</button>
+                        <button type="button" class="btn btn-clear" onclick="clearForm()">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo de Transacción</th>
+                            <th>Tipo Asociado</th>
+                            <th>Valor</th>
+                            <th>Cuenta Bancaria</th>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Adjunto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Finova. Todos los derechos reservados.</p>
+    </footer>
+    <script src="../js/Trasnsacciones.js"></script>
+    
+</body>
+</html>

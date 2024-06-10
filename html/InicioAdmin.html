@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../recursos/logo.jpg">
+    <title>Gestor De Finanzas Personales</title>
+    <link rel="stylesheet" href="../css/InicioClientes.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../recursos/logo.jpg" class="logo">Gestor De Finanzas Personales</a>
+            <div class="icons">
+                <a href="#" id="notificationIcon">
+                    <img src="../recursos/noti.png" alt="Notificaciones">
+                    <span class="badge" id="notificationBadge" style="display: none;">0</span>
+                </a>
+                <div class="user-menu" id="userMenu">
+                    <img src="../recursos/user.png" alt="Cuenta" id="userIcon">
+                    <div class="dropdown" id="userDropdown" style="display: none;">
+                        <a style="width: 150px;" href="../index.html" id="logout">Cerrar sesión</a>
+                        <a style="width: 150px;" href="../index.html" id="switchAccount">Cambiar de cuenta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <center><h2>Bienvenido al apartado del administrador</h2></center>
+        <p>Esta increíble herramienta te ayuda a administrar tus finanzas de manera efectiva. Mejora tu salud financiera y alcanza tus metas económicas personales con facilidad. ¡No esperes más para tomar el control de tu futuro financiero!</p>
+        <div class="container">
+            <div class="item">
+                <a href="../html/IngresoYEgresoAdmin.html">
+                    <img src="../recursos/ingresos.jpg" alt="Gestión de tipos de ingresos y egresos">
+                    <p>Gestión de tipos de ingresos y egresos</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="../html/GestionDeUSuarios.html">
+                    <img src="../recursos/registro.jp.png">
+                    <p>Gestión de usuarios</p>
+                </a>
+            </div>
+        </div>
+    </main>
+    <script>
+        function checkNotifications() {
+            const alerts = JSON.parse(localStorage.getItem('alerts')) || [];
+            const now = new Date();
+            let notificationCount = 0;
+
+            alerts.forEach(alert => {
+                const alertDate = new Date(alert.alertDateTime);
+                if (alertDate <= now && !alert.notified) {
+                    notificationCount++;
+                    alert.notified = true;
+                }
+            });
+
+            if (notificationCount > 0) {
+                document.getElementById('notificationBadge').innerText = notificationCount;
+                document.getElementById('notificationBadge').style.display = 'inline';
+            }
+
+            localStorage.setItem('alerts', JSON.stringify(alerts));
+        }
+
+        function downloadLog() {
+            const logs = localStorage.getItem('logs') || 'No hay registros disponibles';
+            const blob = new Blob([logs], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'registro_de_actividades.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                dropdown.style.display = 'block';
+            } else {
+                dropdown.style.display = 'none';
+            }
+        }
+
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function switchAccount() {
+            window.location.href = 'index.html';
+        }
+
+        window.onload = checkNotifications;
+
+        document.getElementById('userIcon').addEventListener('click', toggleDropdown);
+        document.getElementById('logout').addEventListener('click', logout);
+        document.getElementById('switchAccount').addEventListener('click', switchAccount);
+    </script>
+</body>
+</html>
