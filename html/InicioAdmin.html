@@ -10,9 +10,9 @@
 <body>
     <header>
         <div class="navbar">
-            <a href="../recursos/logo.jpg" class="logo">Gestor De Finanzas Personales</a>
+            <a href="../html/InicioAdmin.html" class="logo">Gestor De Finanzas Personales</a>
             <div class="icons">
-
+                
                 <div class="user-menu" id="userMenu">
                     <img src="../recursos/user.png" alt="Cuenta" id="userIcon">
                     <div class="dropdown" id="userDropdown" style="display: none;">
@@ -35,63 +35,25 @@
             </div>
             <div class="item">
                 <a href="../html/GestionDeUSuarios.html">
-                    <img src="../recursos/registro.jp.png">
+                    <img src="../recursos/registro.jp.png" alt="Gestión de usuarios">
                     <p>Gestión de usuarios</p>
                 </a>
             </div>
         </div>
     </main>
     <script>
-        function checkNotifications() {
-            const alerts = JSON.parse(localStorage.getItem('alerts')) || [];
-            const now = new Date();
-            let notificationCount = 0;
-
-            alerts.forEach(alert => {
-                const alertDate = new Date(alert.alertDateTime);
-                if (alertDate <= now && !alert.notified) {
-                    notificationCount++;
-                    alert.notified = true;
-                }
-            });
-
-            if (notificationCount > 0) {
-                document.getElementById('notificationBadge').innerText = notificationCount;
-                document.getElementById('notificationBadge').style.display = 'inline';
-            }
-
-            localStorage.setItem('alerts', JSON.stringify(alerts));
-        }
-
-        function downloadLog() {
-            const logs = localStorage.getItem('logs') || 'No hay registros disponibles';
-            const blob = new Blob([logs], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'registro_de_actividades.txt';
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
         function toggleDropdown() {
             const dropdown = document.getElementById('userDropdown');
-            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
-                dropdown.style.display = 'block';
-            } else {
-                dropdown.style.display = 'none';
-            }
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
 
         function logout() {
-            window.location.href = 'index.html';
+            window.location.href = '../index.html';
         }
 
         function switchAccount() {
-            window.location.href = 'index.html';
+            window.location.href = '../index.html';
         }
-
-        window.onload = checkNotifications;
 
         document.getElementById('userIcon').addEventListener('click', toggleDropdown);
         document.getElementById('logout').addEventListener('click', logout);
