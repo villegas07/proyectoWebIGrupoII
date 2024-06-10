@@ -154,9 +154,8 @@ function checkNotifications() {
             notificationCount++;
             alert.notified = true;
 
-
             const li = document.createElement('li');
-            li.innerHTML = `<a href="/html/Alertas.html"><strong>${alert.alertType}</strong>: ${alert.alertDescription}</a>`;
+            li.innerHTML = `<a href="Alertas.html"><strong>${alert.alertType}</strong>: ${alert.alertDescription}</a>`;
             notificationsList.appendChild(li);
         }
     });
